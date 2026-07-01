@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>oomwoo — the open-source robot vacuum you build yourself</title>
+<meta name="description" content="oomwoo is an open-source home robot vacuum you build yourself — Raspberry Pi, ROS2, Home Assistant, 2D LiDAR, 3D printed. Local-first, no cloud, no lock-in.">
+
+<!-- Open Graph / social -->
+<meta property="og:title" content="oomwoo — the open-source robot vacuum you build yourself">
+<meta property="og:description" content="Raspberry Pi · ROS2 · Home Assistant · 2D LiDAR · 3D printed. Local-first, no cloud, no vendor lock-in.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/makerspet/oomwoo/main/assets/vacuum_model_top.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Cg fill='none' stroke='%235eead4' stroke-width='2.5'%3E%3Ccircle cx='11' cy='16' r='4.5'/%3E%3Ccircle cx='21' cy='16' r='4.5'/%3E%3C/g%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0b0d12;
+    --bg-soft:#11141b;
+    --card:#141821;
+    --border:#232937;
+    --text:#e7ecf3;
+    --muted:#9aa6b8;
+    --teal:#5eead4;
+    --violet:#a78bfa;
+    --grad:linear-gradient(120deg,#5eead4,#a78bfa);
+    --radius:16px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ambient glow */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(650px 400px at 15% -5%, rgba(94,234,212,.14), transparent 60%),
+      radial-gradient(700px 450px at 90% 0%, rgba(167,139,250,.16), transparent 60%);
+  }
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);
+    background:rgba(11,13,18,.72);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:22px;letter-spacing:.5px;
+    display:flex;align-items:center;gap:10px}
+  .brand .dots{display:inline-flex;gap:5px}
+  .brand .dots i{width:11px;height:11px;border-radius:50%;border:2.5px solid var(--teal);display:block}
+  .nav-links{display:flex;gap:22px;align-items:center;font-size:15px;color:var(--muted)}
+  .nav-links a{text-decoration:none;transition:color .15s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{padding:8px 16px;border-radius:10px;background:var(--grad);color:#0b0d12 !important;
+    font-weight:600;text-decoration:none}
+  @media(max-width:720px){.nav-links a.hide-sm{display:none}}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;
+    padding:72px 0 56px}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;padding:48px 0 36px;text-align:center}}
+  .tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--teal);
+    border:1px solid var(--border);background:var(--bg-soft);padding:6px 12px;border-radius:999px;margin-bottom:20px}
+  .tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(94,234,212,.6);
+    animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,234,212,.5)}70%{box-shadow:0 0 0 10px rgba(94,234,212,0)}100%{box-shadow:0 0 0 0 rgba(94,234,212,0)}}
+  h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(38px,6vw,60px);
+    line-height:1.05;margin:0 0 18px}
+  .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:36ch;margin:0 0 28px}
+  @media(max-width:860px){.lede{margin-left:auto;margin-right:auto}}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  @media(max-width:860px){.cta-row{justify-content:center}}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;
+    font-weight:600;text-decoration:none;font-size:15px;transition:transform .12s,box-shadow .2s,border-color .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--grad);color:#0b0d12;box-shadow:0 8px 30px rgba(94,234,212,.18)}
+  .btn-ghost{background:var(--bg-soft);color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--teal)}
+
+  .hero-media{position:relative}
+  .hero-media img{width:100%;border-radius:20px;border:1px solid var(--border);
+    background:var(--bg-soft);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .hero-media .float{position:absolute;bottom:-16px;right:-10px;background:var(--card);
+    border:1px solid var(--border);border-radius:12px;padding:10px 14px;font-size:13px;color:var(--muted);
+    box-shadow:0 12px 30px rgba(0,0,0,.4)}
+  @media(max-width:860px){.hero-media{max-width:460px;margin:8px auto 0}.hero-media .float{right:8px}}
+
+  /* badges */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  @media(max-width:860px){.badges{justify-content:center}}
+  .badge{font-size:13px;color:var(--muted);border:1px solid var(--border);background:var(--bg-soft);
+    padding:6px 13px;border-radius:999px}
+
+  /* sections */
+  section{padding:52px 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 36px}
+  .sec-head h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(26px,4vw,34px);margin:0 0 10px}
+  .sec-head p{color:var(--muted);margin:0}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.cards{grid-template-columns:1fr}}
+  .card{display:block;text-decoration:none;background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:24px;transition:transform .15s,border-color .2s,background .2s}
+  .card:hover{transform:translateY(-4px);border-color:var(--teal);background:#171c26}
+  .card .ico{font-size:26px;margin-bottom:12px}
+  .card h3{margin:0 0 6px;font-size:18px;font-family:"Space Grotesk",sans-serif}
+  .card p{margin:0;color:var(--muted);font-size:14.5px}
+  .card .go{margin-top:14px;font-size:14px;color:var(--teal);font-weight:600}
+
+  /* status strip */
+  .status{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px 26px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .status .k{color:var(--teal);font-weight:600;font-family:"Space Grotesk",sans-serif;white-space:nowrap}
+  .status .v{color:var(--muted);font-size:15px;min-width:220px;flex:1}
+
+  /* signup */
+  .signup-box{background:linear-gradient(180deg,#141821,#10131a);border:1px solid var(--border);
+    border-radius:22px;padding:44px 32px;text-align:center;position:relative;overflow:hidden}
+  .signup-box::before{content:"";position:absolute;inset:0;z-index:0;
+    background:radial-gradient(500px 200px at 50% 0%,rgba(167,139,250,.15),transparent 70%)}
+  .signup-box>*{position:relative;z-index:1}
+  .signup-box h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(24px,4vw,32px);margin:0 0 8px}
+  .signup-box p{color:var(--muted);margin:0 auto 24px;max-width:46ch}
+  form.signup{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  form.signup input{flex:1;min-width:220px;padding:14px 16px;border-radius:12px;border:1px solid var(--border);
+    background:#0d1017;color:var(--text);font-size:15px;font-family:inherit}
+  form.signup input:focus{outline:none;border-color:var(--teal)}
+  form.signup button{padding:14px 24px;border:none;border-radius:12px;background:var(--grad);
+    color:#0b0d12;font-weight:700;font-size:15px;cursor:pointer;transition:transform .12s}
+  form.signup button:hover{transform:translateY(-2px)}
+  .signup-note{margin-top:14px;font-size:13px;color:var(--muted)}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);margin-top:20px;padding:40px 0 56px;color:var(--muted)}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}
+  .foot-links a{text-decoration:none;color:var(--muted);transition:color .15s}
+  .foot-links a:hover{color:var(--text)}
+  .foot-note{font-size:13px;margin-top:20px;max-width:70ch}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="dots"><i></i><i></i></span> oomwoo</div>
+    <nav class="nav-links">
+      <a class="hide-sm" href="#build">Build</a>
+      <a class="hide-sm" href="#contribute">Contribute</a>
+      <a class="hide-sm" href="https://github.com/makerspet/oomwoo">GitHub</a>
+      <a class="nav-cta" href="#newsletter">Get updates</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:64px">
+    <div>
+      <span class="tag"><span class="pulse"></span> Early development · first BoM ~mid-July</span>
+      <h1>The <span class="grad-text">open-source</span> robot vacuum you build yourself.</h1>
+      <p class="lede">Raspberry Pi, ROS2 and 2D LiDAR. It maps your home and cleans on its own —
+        local-first, no cloud, no vendor lock-in. 3D-printable and fully hackable.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/makerspet/oomwoo">★ Star on GitHub</a>
+        <a class="btn btn-ghost" href="https://discord.gg/3y2JKz5T25">Join Discord</a>
+      </div>
+      <div class="badges">
+        <span class="badge">Raspberry Pi</span>
+        <span class="badge">ROS2</span>
+        <span class="badge">Home Assistant</span>
+        <span class="badge">2D LiDAR</span>
+        <span class="badge">3D printed</span>
+        <span class="badge">ESP32 · Arduino</span>
+        <span class="badge">Apache-2.0</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://raw.githubusercontent.com/makerspet/oomwoo/main/assets/vacuum_model_top.webp"
+           alt="oomwoo robot vacuum — reference design, top view" loading="eager">
+      <span class="float">Reference design — roughly how it'll look</span>
+    </div>
+  </section>
+
+  <!-- BUILD / POINTERS -->
+  <section id="build">
+    <div class="sec-head">
+      <h2>Everything's open. Start anywhere.</h2>
+      <p>Source the parts, print the chassis, run the ROS2 stack — or just follow along while it comes together.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://github.com/makerspet/oomwoo/blob/main/BOM.md">
+        <div class="ico">📋</div>
+        <h3>Bill of Materials</h3>
+        <p>Work-in-progress parts list + a ~$200 budget target, aimed at mid-range commercial cleaning.</p>
+        <div class="go">View the BoM →</div>
+      </a>
+      <a class="card" href="https://github.com/makerspet/oomwoo">
+        <div class="ico">🤖</div>
+        <h3>The main repo</h3>
+        <p>Goals, architecture, design research and the whole open build in one place.</p>
+        <div class="go">Open on GitHub →</div>
+      </a>
+      <a class="card" href="https://github.com/makerspet/oomwoo-one">
+        <div class="ico">🕹️</div>
+        <h3>Simulate it now</h3>
+        <p>Run <code>oomwoo-one</code> in Gazebo with ROS2 — SLAM, Nav2 and teleop, no hardware needed.</p>
+        <div class="go">Try the sim →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTRIBUTE -->
+  <section id="contribute">
+    <div class="sec-head">
+      <h2>Built by the community, in parallel</h2>
+      <p>The robot is split into independent modules (RFCs). Pick one, work when you want, open a PR.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://github.com/makerspet/oomwoo#requests-for-contributions">
+        <div class="ico">🧩</div>
+        <h3>Requests for Contributions</h3>
+        <p>Grab a module — sim, mapping, navigation, docking, floor care and more.</p>
+        <div class="go">See open modules →</div>
+      </a>
+      <a class="card" href="https://github.com/makerspet/oomwoo/blob/main/docs/CONTRIBUTING.md">
+        <div class="ico">📖</div>
+        <h3>Contributing guide</h3>
+        <p>How the parallel, module-based workflow works and how to submit your PR.</p>
+        <div class="go">Read the guide →</div>
+      </a>
+      <a class="card" href="https://discord.gg/3y2JKz5T25">
+        <div class="ico">💬</div>
+        <h3>Say hi on Discord</h3>
+        <p>Ask questions, claim a module, and build in public with the rest of us.</p>
+        <div class="go">Join the chat →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <section>
+    <div class="status">
+      <span class="k">Where we're at</span>
+      <span class="v"><strong style="color:var(--text)">Design / RFC stage.</strong> Step-by-step build
+        instructions arrive once the first BoM and parts are validated — first BoM targeted <strong style="color:var(--text)">~mid-July '26</strong>,
+        a final fully-costed BoM by <strong style="color:var(--text)">end of August '26</strong>.</span>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="signup-box">
+      <h2>Follow the build</h2>
+      <p>Get the occasional update — new BoM drops, simulation tutorials, and when it's ready to build.</p>
+      <form class="signup" action="https://stats.sender.net/forms/bo2rAK/view" method="get" target="_blank" rel="noopener">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button type="submit">Subscribe →</button>
+      </form>
+      <div class="signup-note">No spam. Unsubscribe anytime. Also on
+        <a href="https://www.youtube.com/@makerspet" style="color:var(--teal)">YouTube</a> &amp;
+        <a href="https://www.reddit.com/r/ArduinoAndRobotics/" style="color:var(--teal)">Reddit</a>.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="brand"><span class="dots"><i></i><i></i></span> oomwoo</div>
+      <div class="foot-links">
+        <a href="https://github.com/makerspet/oomwoo">GitHub</a>
+        <a href="https://discord.gg/3y2JKz5T25">Discord</a>
+        <a href="https://www.youtube.com/@makerspet">YouTube</a>
+        <a href="https://www.reddit.com/r/ArduinoAndRobotics/">Reddit</a>
+        <a href="https://x.com/0OMWO0">X</a>
+        <a href="https://github.com/makerspet/oomwoo/blob/main/BOM.md">BoM</a>
+      </div>
+    </div>
+    <p class="foot-note">oomwoo is an open-source home robot vacuum. Code under Apache-2.0; hardware
+      design files under an open hardware license (TBD). Sponsored by
+      <a href="https://makerspet.com" style="color:var(--teal)">makerspet.com</a> &amp;
+      <a href="https://remake.ai" style="color:var(--teal)">remake.ai</a> — a kit will be optional; everything here stays open.
+      The name is a rotational ambigram — it reads the same flipped 180°, like the robot roaming your floor.</p>
+  </div>
+</footer>
+
+</body>
+</html>
