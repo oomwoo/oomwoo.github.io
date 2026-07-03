@@ -134,6 +134,14 @@
   .card p{margin:0;color:var(--muted);font-size:14.5px}
   .card .go{margin-top:14px;font-size:14px;color:var(--teal);font-weight:600}
 
+  /* closer-look shots */
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .shot{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:0;transition:transform .15s,border-color .2s}
+  .shot:hover{transform:translateY(-4px);border-color:var(--teal)}
+  .shot img{width:100%;display:block;background:var(--bg-soft)}
+  .shot figcaption{padding:15px 18px;color:var(--muted);font-size:14.5px}
+  @media(max-width:860px){.shots{grid-template-columns:1fr}}
+
   /* status strip */
   .status{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);
     padding:22px 26px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
@@ -235,6 +243,24 @@
         <p>Run <code>oomwoo-one</code> in Gazebo with ROS2 — SLAM, Nav2 and teleop, no hardware needed.</p>
         <div class="go">Try the sim →</div>
       </a>
+    </div>
+  </section>
+
+  <!-- CLOSER LOOK -->
+  <section id="closer-look">
+    <div class="sec-head">
+      <h2>Under the hood</h2>
+      <p>Not a sealed appliance — an open platform you assemble, understand, and modify.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="assets/vacuum-bottom.webp" alt="oomwoo underside — drive wheels, main and side brushes, caster and sensors" loading="lazy">
+        <figcaption>Underside — drive wheels, brushes, caster and cliff sensors, all sourced or printed.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/vacuum-internals.webp" alt="oomwoo with the top cover removed, showing the internal layout" loading="lazy">
+        <figcaption>Top cover off — LiDAR, battery, suction fan and the I/O board you can actually get at.</figcaption>
+      </figure>
     </div>
   </section>
 
