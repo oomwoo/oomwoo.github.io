@@ -1,4 +1,4 @@
-# oomwoo website
+# OOMWOO website
 
 Landing page for **[oomwoo](https://github.com/makerspet/oomwoo)** — the open-source robot
 vacuum you build yourself.
