@@ -1,6 +1,6 @@
 # OOMWOO open-source vacuum cleaner robot website
 
-Landing page for **[OOMWOO](https://github.com/makerspet/oomwoo)** — the open-source robot
+Landing page for [OOMWOO](https://github.com/makerspet/oomwoo) — the open-source robot
 vacuum you build yourself.
 
 It's a single self-contained `index.html` (no build step, no dependencies) served via
