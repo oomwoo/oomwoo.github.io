@@ -120,7 +120,7 @@
   .sec-head h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(26px,4vw,34px);margin:0 0 10px}
   .sec-head p{color:var(--muted);margin:0}
 
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
   @media(max-width:860px){.cards{grid-template-columns:1fr}}
   .card{display:block;text-decoration:none;background:var(--card);border:1px solid var(--border);
     border-radius:var(--radius);padding:24px;transition:transform .15s,border-color .2s,background .2s}
@@ -195,7 +195,7 @@
   <section class="hero" style="padding-top:64px">
     <div>
       <span class="tag"><span class="pulse"></span> Early development · first BoM ~mid-July</span>
-      <h1>The <span class="grad-text">open-source</span> robot vacuum you build yourself.</h1>
+      <h1><span class="grad-text">Open-source</span> robot vacuum you build yourself.</h1>
       <p class="lede">Raspberry Pi, ROS2 and 2D LiDAR. It maps your home and cleans on its own —
         local-first, no cloud, no vendor lock-in. 3D-printable and fully hackable.</p>
       <div class="cta-row">
@@ -224,14 +224,14 @@
   <section id="build">
     <div class="sec-head">
       <h2>Everything's open.</h2>
-      <p>Print the chassis, install the software — or just follow along while it comes together.</p>
+      <p>Print chassis, install software — or just follow along while it comes together.</p>
     </div>
     <div class="cards">
       <a class="card" href="https://github.com/makerspet/oomwoo/blob/main/BOM.md">
         <div class="ico"><svg class="icon" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 15h6"/></svg></div>
         <h3>Bill of Materials</h3>
         <p>Work-in-progress parts list + a ~$200 budget target, aimed at mid-range commercial cleaning.</p>
-        <div class="go">View the BoM →</div>
+        <div class="go">View BoM →</div>
       </a>
       <a class="card" href="https://github.com/makerspet/oomwoo">
         <div class="ico"><svg class="icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
@@ -240,11 +240,17 @@
         <div class="go">Open on GitHub →</div>
       </a>
       <div class="card">
-        <div class="ico"><svg class="icon" viewBox="0 0 64 64" style="fill:currentColor;stroke:none"><g id="Expanded"> <path d="M32,59c14.902,-0 27,-12.098 27,-27c0,-14.902 -12.098,-27 -27,-27c-14.902,0 -27,12.098 -27,27c0,14.902 12.098,27 27,27Zm16.945,-2.948l2.172,2.172Zm-36.012,2.121l2.172,-2.171Zm-5.854,-24.173c0.994,12.536 11.252,22.48 23.921,22.98l0,-3.002c-11.012,-0.494 -19.928,-9.099 -20.91,-19.978l-3.011,0Zm46.831,0c-0.982,10.879 -9.898,19.484 -20.91,19.978l0,3.002c12.669,-0.5 22.927,-10.444 23.921,-22.98l-3.011,0Zm-43.855,21.395l2.171,-2.171Zm41.668,-2.222l2.172,2.172Zm2.879,-2.778l2.172,2.172Zm-47.326,2.122l2.172,-2.172Zm27.018,-10.832c0.271,0.423 0.428,0.925 0.428,1.465c0,1.502 -1.22,2.722 -2.722,2.722c-1.502,-0 -2.722,-1.22 -2.722,-2.722c-0,-0.54 0.157,-1.042 0.428,-1.465c0.297,-0.465 0.162,-1.084 -0.303,-1.382c-0.464,-0.297 -1.084,-0.162 -1.381,0.303c-0.471,0.734 -0.744,1.607 -0.744,2.544c-0,2.606 2.116,4.722 4.722,4.722c2.606,-0 4.722,-2.116 4.722,-4.722c0,-0.937 -0.273,-1.81 -0.744,-2.544c-0.297,-0.465 -0.917,-0.6 -1.381,-0.303c-0.465,0.298 -0.6,0.917 -0.303,1.382Zm-1.294,1.751l0,-3.436c0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,1l0,3.436c0,0.552 0.448,1 1,1c0.552,-0 1,-0.448 1,-1Zm8,-34.764c-2.793,-1.08 -5.828,-1.672 -9,-1.672c-3.172,0 -6.207,0.592 -9,1.672l0,16.328c0,4.706 4.047,8.5 9,8.5c4.953,0 9,-3.794 9,-8.5l0,-16.328Zm-20,0.875c-8.289,4.073 -14,12.601 -14,22.453l3,0c0,-8.136 4.426,-15.247 11,-19.053l0,-3.4Zm22,0l0,3.4c6.574,3.806 11,10.917 11,19.053l3,0c-0,-9.852 -5.711,-18.38 -14,-22.453Zm-11,8.453c-3.863,0 -7,3.137 -7,7c0,3.863 3.137,7 7,7c3.863,-0 7,-3.137 7,-7c-0,-3.863 -3.137,-7 -7,-7Z" ></path> </g></svg></div>
-        <h3>Simulate it now</h3>
-        <p>Run <code>oomwoo-one</code> in Gazebo with ROS2 — SLAM, Nav2 and teleop, no hardware needed.</p>
-        <a class="btn btn-primary card-btn" href="https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/">Follow the tutorial →</a>
+        <div class="ico"><svg class="icon" viewBox="0 0 64 64" style="fill:currentColor;stroke:none;fill-rule:evenodd"><g id="Expanded"> <path d="M32,59c14.902,-0 27,-12.098 27,-27c0,-14.902 -12.098,-27 -27,-27c-14.902,0 -27,12.098 -27,27c0,14.902 12.098,27 27,27Zm16.945,-2.948l2.172,2.172Zm-36.012,2.121l2.172,-2.171Zm-5.854,-24.173c0.994,12.536 11.252,22.48 23.921,22.98l0,-3.002c-11.012,-0.494 -19.928,-9.099 -20.91,-19.978l-3.011,0Zm46.831,0c-0.982,10.879 -9.898,19.484 -20.91,19.978l0,3.002c12.669,-0.5 22.927,-10.444 23.921,-22.98l-3.011,0Zm-43.855,21.395l2.171,-2.171Zm41.668,-2.222l2.172,2.172Zm2.879,-2.778l2.172,2.172Zm-47.326,2.122l2.172,-2.172Zm27.018,-10.832c0.271,0.423 0.428,0.925 0.428,1.465c0,1.502 -1.22,2.722 -2.722,2.722c-1.502,-0 -2.722,-1.22 -2.722,-2.722c-0,-0.54 0.157,-1.042 0.428,-1.465c0.297,-0.465 0.162,-1.084 -0.303,-1.382c-0.464,-0.297 -1.084,-0.162 -1.381,0.303c-0.471,0.734 -0.744,1.607 -0.744,2.544c-0,2.606 2.116,4.722 4.722,4.722c2.606,-0 4.722,-2.116 4.722,-4.722c0,-0.937 -0.273,-1.81 -0.744,-2.544c-0.297,-0.465 -0.917,-0.6 -1.381,-0.303c-0.465,0.298 -0.6,0.917 -0.303,1.382Zm-1.294,1.751l0,-3.436c0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,1l0,3.436c0,0.552 0.448,1 1,1c0.552,-0 1,-0.448 1,-1Zm8,-34.764c-2.793,-1.08 -5.828,-1.672 -9,-1.672c-3.172,0 -6.207,0.592 -9,1.672l0,16.328c0,4.706 4.047,8.5 9,8.5c4.953,0 9,-3.794 9,-8.5l0,-16.328Zm-20,0.875c-8.289,4.073 -14,12.601 -14,22.453l3,0c0,-8.136 4.426,-15.247 11,-19.053l0,-3.4Zm22,0l0,3.4c6.574,3.806 11,10.917 11,19.053l3,0c-0,-9.852 -5.711,-18.38 -14,-22.453Zm-11,8.453c-3.863,0 -7,3.137 -7,7c0,3.863 3.137,7 7,7c3.863,-0 7,-3.137 7,-7c-0,-3.863 -3.137,-7 -7,-7Z" ></path> </g></svg></div>
+        <h3>Install &amp; simulate now</h3>
+        <p>The dev environment is ready — install it and drive <code>oomwoo-one</code> in Gazebo (SLAM, Nav2, teleop), no hardware needed.</p>
+        <a class="btn btn-primary card-btn" href="https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/">Follow tutorial →</a>
       </div>
+      <a class="card" href="https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/">
+        <div class="ico"><svg class="icon" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <h3>Run on a real vacuum</h3>
+        <p>No hardware to wait for — connect an off-the-shelf Proscenic M6 Pro to ROS2 as a placeholder robot and run the same stack on real hardware.</p>
+        <div class="go">Follow tutorial →</div>
+      </a>
     </div>
   </section>
 
@@ -269,7 +275,7 @@
   <!-- CONTRIBUTE -->
   <section id="contribute">
     <div class="sec-head">
-      <h2>Built by the community, in parallel</h2>
+      <h2>Built by community, in parallel</h2>
       <p>The robot is split into independent modules (RFCs). Pick one, work when you want, open a PR.</p>
     </div>
     <div class="cards">
@@ -283,13 +289,13 @@
         <div class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M12 7C10.5 5.5 8 5 4 5.5v13c4-.5 6.5 0 8 1.5"/><path d="M12 7c1.5-1.5 4-2 8-1.5v13c-4-.5-6.5 0-8 1.5"/><path d="M12 7v13"/></svg></div>
         <h3>Contributing guide</h3>
         <p>How the parallel, module-based workflow works and how to submit your PR.</p>
-        <div class="go">Read the guide →</div>
+        <div class="go">Read guide →</div>
       </a>
       <a class="card" href="https://discord.gg/3y2JKz5T25">
         <div class="ico"><svg class="icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></div>
         <h3>Say hi on Discord</h3>
         <p>Ask questions, claim a module, and build in public with the rest of us.</p>
-        <div class="go">Join the chat →</div>
+        <div class="go">Join chat →</div>
       </a>
     </div>
   </section>
