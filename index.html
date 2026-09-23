@@ -149,6 +149,20 @@
   .status .k{color:var(--teal);font-weight:600;font-family:"Space Grotesk",sans-serif;white-space:nowrap}
   .status .v{color:var(--muted);font-size:15px;min-width:220px;flex:1}
 
+  /* progress */
+  .prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:22px}
+  .prog{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .prog-name{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px}
+  .prog-pct{color:var(--teal);font-weight:600;font-variant-numeric:tabular-nums;font-size:15px}
+  .prog-bar{height:8px;border-radius:999px;background:#0d1017;border:1px solid var(--border);
+    margin-top:11px;overflow:hidden}
+  .prog-fill{display:block;height:100%;border-radius:999px;background:var(--grad);width:0;
+    transition:width .8s cubic-bezier(.2,.7,.3,1)}
+  .prog-note{color:var(--muted);font-size:14px;margin:9px 0 0}
+  .prog-updated{color:var(--muted);font-size:13px;text-align:center;margin-top:20px}
+  @media(prefers-reduced-motion:reduce){.prog-fill{transition:none}}
+
   /* signup */
   .signup-box{background:linear-gradient(180deg,#141821,#10131a);border:1px solid var(--border);
     border-radius:22px;padding:44px 32px;text-align:center;position:relative;overflow:hidden}
@@ -182,6 +196,7 @@
     <div class="brand"><span class="dots"><i></i><i></i></span> OOMWOO</div>
     <nav class="nav-links">
       <a class="hide-sm" href="#build">Build</a>
+      <a class="hide-sm" href="#progress">Progress</a>
       <a class="hide-sm" href="#contribute">Contribute</a>
       <a class="hide-sm" href="https://github.com/makerspet/oomwoo">GitHub</a>
       <a class="nav-cta" href="#newsletter">Get updates</a>
@@ -194,7 +209,7 @@
   <!-- HERO -->
   <section class="hero" style="padding-top:64px">
     <div>
-      <span class="tag"><span class="pulse"></span> Early development · first BoM ~mid-July</span>
+      <span class="tag"><span class="pulse"></span> Early development · simulate today, hardware in design</span>
       <h1><span class="grad-text">Open-source</span> robot vacuum you build yourself.</h1>
       <p class="lede">Raspberry Pi, ROS2 and 2D LiDAR. It maps your home and cleans on its own —
         fully local, no cloud, no lock-in. The firmware is open, so you can audit it and
@@ -219,6 +234,51 @@
            alt="OOMWOO robot vacuum — reference design, top view" loading="eager">
       <span class="float">Reference design — roughly how it'll look</span>
     </div>
+  </section>
+
+
+  <!-- PROGRESS -->
+  <section id="progress">
+    <div class="sec-head">
+      <h2>Where the build is</h2>
+      <p>Built in the open, so here is the honest state of it.</p>
+    </div>
+    <div class="status">
+      <span class="k">Can I build one?</span>
+      <span class="v"><strong style="color:var(--text)">Not yet - you can simulate it today.</strong>
+        The chassis and the I/O board are still being designed. Nothing is hidden while that
+        happens: parts, CAD, schematics and code are all public as they land, and the
+        step-by-step build guide follows once the first bill of materials is validated on real
+        hardware.</span>
+    </div>
+    <div class="prog-grid">
+        <div class="prog" data-pct="90">
+          <div class="prog-top"><span class="prog-name">Simulation</span><span class="prog-pct">90%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Simulation" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:90%"></span></div>
+          <p class="prog-note">Drive it in Gazebo today - SLAM, navigation, teleop. No hardware needed.</p>
+        </div>
+        <div class="prog" data-pct="55">
+          <div class="prog-top"><span class="prog-name">Electronics: I/O board</span><span class="prog-pct">55%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Electronics: I/O board" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:55%"></span></div>
+          <p class="prog-note">KiCad schematic in review. Motor drivers, sensors, power.</p>
+        </div>
+        <div class="prog" data-pct="40">
+          <div class="prog-top"><span class="prog-name">Mechanical &amp; 3D design</span><span class="prog-pct">40%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Mechanical and 3D design" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:40%"></span></div>
+          <p class="prog-note">Off-the-shelf parts digitized; chassis and dust bin in progress.</p>
+        </div>
+        <div class="prog" data-pct="35">
+          <div class="prog-top"><span class="prog-name">Cleaning software</span><span class="prog-pct">35%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Cleaning software" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:35%"></span></div>
+          <p class="prog-note">Follows walls and around obstacles. Whole-floor coverage is next.</p>
+        </div>
+        <div class="prog" data-pct="10">
+          <div class="prog-top"><span class="prog-name">MCU firmware</span><span class="prog-pct">10%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="MCU firmware" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:10%"></span></div>
+          <p class="prog-note">Serial protocol between compute and motor board merged and tested.</p>
+        </div>
+    </div>
+    <p class="prog-updated">Updated 23 Sep 2026 · <a href="https://github.com/makerspet/oomwoo/tree/main/contributions" style="color:var(--teal);text-decoration:none">task-by-task detail on the RFC board →</a></p>
   </section>
 
   <!-- BUILD / POINTERS -->
@@ -295,15 +355,6 @@
     </div>
   </section>
 
-  <!-- STATUS -->
-  <section>
-    <div class="status">
-      <span class="k">Where we're at</span>
-      <span class="v"><strong style="color:var(--text)">Design / RFC stage.</strong> Step-by-step build
-        instructions arrive once the first BoM and parts are validated — first BoM targeted <strong style="color:var(--text)">~mid-July '26</strong>,
-        a final fully-costed BoM by <strong style="color:var(--text)">end of August '26</strong>.</span>
-    </div>
-  </section>
 
   <!-- NEWSLETTER -->
   <section id="newsletter">
@@ -344,6 +395,25 @@
       The name is a rotational ambigram — it reads the same flipped 180°, like the robot roaming your floor.</p>
   </div>
 </footer>
+
+<script>
+// Progress bars: width is pre-set in the markup so it still renders without JS.
+// With JS, hold them at zero and fill on scroll-in.
+(function(){
+  var bars = document.querySelectorAll('.prog[data-pct]');
+  if(!bars.length || !('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  bars.forEach(function(b){ b.querySelector('.prog-fill').style.width = '0%'; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.querySelector('.prog-fill').style.width = e.target.dataset.pct + '%';
+      io.unobserve(e.target);
+    });
+  }, {threshold:.35});
+  bars.forEach(function(b){ io.observe(b); });
+})();
+</script>
 
 </body>
 </html>
