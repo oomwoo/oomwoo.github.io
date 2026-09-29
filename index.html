@@ -163,6 +163,31 @@
   .prog-updated{color:var(--muted);font-size:13px;text-align:center;margin-top:20px}
   @media(prefers-reduced-motion:reduce){.prog-fill{transition:none}}
 
+  /* showcase videos: a local thumbnail until clicked, then a youtube-nocookie iframe */
+  .vids{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:760px){.vids{grid-template-columns:1fr}}
+  .vid{margin:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    overflow:hidden;transition:border-color .2s}
+  .vid:hover{border-color:var(--teal)}
+  .vid-frame{position:relative;display:block;aspect-ratio:16/9;background:var(--bg-soft);color:inherit}
+  .vid-frame img,.vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;
+    display:block;object-fit:cover}
+  .vid-play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;
+    border-radius:50%;background:rgba(11,13,18,.72);border:1px solid rgba(94,234,212,.55);
+    display:flex;align-items:center;justify-content:center;transition:transform .15s,background .2s}
+  .vid-play svg{width:26px;height:26px;margin-left:4px;fill:var(--teal)}
+  .vid-frame:hover .vid-play,.vid-frame:focus-visible .vid-play{transform:scale(1.08);
+    background:rgba(11,13,18,.9)}
+  .vid-frame:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+  .vid figcaption{padding:14px 18px 16px}
+  .vid-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:"Space Grotesk",sans-serif;
+    font-weight:500;font-size:16px}
+  .vid-tag{font-family:"Inter",sans-serif;font-size:12px;color:var(--teal);border:1px solid var(--border);
+    background:var(--bg-soft);padding:2px 9px;border-radius:999px;font-weight:500}
+  .vid figcaption p{margin:6px 0 0;color:var(--muted);font-size:14px}
+  .vids-more{text-align:center;margin-top:20px;font-size:14px}
+  .vids-more a{color:var(--teal);text-decoration:none}
+
   /* signup */
   .signup-box{background:linear-gradient(180deg,#141821,#10131a);border:1px solid var(--border);
     border-radius:22px;padding:44px 32px;text-align:center;position:relative;overflow:hidden}
@@ -279,6 +304,58 @@
         </div>
     </div>
     <p class="prog-updated">Updated 28 Sep 2026 · <a href="https://github.com/makerspet/oomwoo/tree/main/contributions" style="color:var(--teal);text-decoration:none">task-by-task detail on the RFC board →</a></p>
+  </section>
+
+
+  <!-- SHOWCASE -->
+  <section id="showcase">
+    <div class="sec-head">
+      <h2>See it working</h2>
+      <p>Short, unpolished clips straight from the simulator and the workbench.</p>
+    </div>
+    <div class="vids">
+      <figure class="vid">
+        <a class="vid-frame" href="https://youtu.be/qNMa3b2B7JA" data-yt="qNMa3b2B7JA" aria-label="Play video: Cleaning walls and tracking cleaned areas">
+          <img src="assets/video/qNMa3b2B7JA.webp" width="960" height="540" loading="lazy" alt="">
+          <span class="vid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </a>
+        <figcaption>
+          <div class="vid-title">Cleaning walls and tracking cleaned areas <span class="vid-tag">Simulation</span></div>
+          <p>Sweeps along every wall and obstacle once, and keeps track of what is already clean.</p>
+        </figcaption>
+      </figure>
+      <figure class="vid">
+        <a class="vid-frame" href="https://youtu.be/CY2X2mhrebw" data-yt="CY2X2mhrebw" aria-label="Play video: Automatic docking tests">
+          <img src="assets/video/CY2X2mhrebw.webp" width="960" height="540" loading="lazy" alt="">
+          <span class="vid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </a>
+        <figcaption>
+          <div class="vid-title">Automatic docking tests <span class="vid-tag">Simulation</span></div>
+          <p>Finds the dock by its beacon, then lines up on it with the LiDAR.</p>
+        </figcaption>
+      </figure>
+      <figure class="vid">
+        <a class="vid-frame" href="https://youtu.be/Y2uC995az5o" data-yt="Y2uC995az5o" aria-label="Play video: Wall following torture course">
+          <img src="assets/video/Y2uC995az5o.webp" width="960" height="540" loading="lazy" alt="">
+          <span class="vid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </a>
+        <figcaption>
+          <div class="vid-title">Wall following torture course <span class="vid-tag">Simulation</span></div>
+          <p>A full lap of a course built to break wall following. LiDAR only - no map.</p>
+        </figcaption>
+      </figure>
+      <figure class="vid">
+        <a class="vid-frame" href="https://youtu.be/kI6-am8lMwU" data-yt="kI6-am8lMwU" aria-label="Play video: 3D scanning a HEPA filter into CAD">
+          <img src="assets/video/kI6-am8lMwU.webp" width="960" height="540" loading="lazy" alt="">
+          <span class="vid-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        </a>
+        <figcaption>
+          <div class="vid-title">3D scanning a HEPA filter into CAD <span class="vid-tag">3D design</span></div>
+          <p>Every part we buy is 3D scanned, so the chassis can be designed around it.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="vids-more"><a href="https://www.youtube.com/@makerspet">More build videos on YouTube →</a></p>
   </section>
 
   <!-- BUILD / POINTERS -->
@@ -413,6 +490,25 @@
   }, {threshold:.35});
   bars.forEach(function(b){ io.observe(b); });
 })();
+</script>
+
+<script>
+// Videos: nothing is requested from YouTube until a visitor clicks play.
+// Without JS the thumbnail is a plain link to the video.
+document.querySelectorAll('.vid-frame[data-yt]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+    f.title = a.getAttribute('aria-label').replace('Play video: ', '');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    var box = document.createElement('div');
+    box.className = 'vid-frame';
+    box.appendChild(f);
+    a.replaceWith(box);
+  });
+});
 </script>
 
 </body>
