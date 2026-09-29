@@ -245,6 +245,7 @@
       </div>
       <div class="badges">
         <span class="badge">Clean well</span>
+        <span class="badge">Hackable</span>
         <span class="badge">Raspberry Pi</span>
         <span class="badge">ROS2</span>
         <span class="badge">Home Assistant</span>
@@ -259,51 +260,6 @@
            alt="OOMWOO robot vacuum — reference design, top view" loading="eager">
       <span class="float">Reference design — roughly how it'll look</span>
     </div>
-  </section>
-
-
-  <!-- PROGRESS -->
-  <section id="progress">
-    <div class="sec-head">
-      <h2>Where the build is</h2>
-      <p>Built in the open, so here is the honest state of it.</p>
-    </div>
-    <div class="status">
-      <span class="k">Can I build one?</span>
-      <span class="v"><strong style="color:var(--text)">Not yet - you can simulate it today.</strong>
-        The chassis and the I/O board are still being designed. Nothing is hidden while that
-        happens: parts, CAD, schematics and code are all public as they land, and the
-        step-by-step build guide follows once the first bill of materials is validated on real
-        hardware.</span>
-    </div>
-    <div class="prog-grid">
-        <div class="prog" data-pct="90">
-          <div class="prog-top"><span class="prog-name">Simulation</span><span class="prog-pct">90%</span></div>
-          <div class="prog-bar" role="progressbar" aria-label="Simulation" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:90%"></span></div>
-          <p class="prog-note">Drive it in Gazebo today - SLAM, navigation, teleop. No hardware needed.</p>
-        </div>
-        <div class="prog" data-pct="55">
-          <div class="prog-top"><span class="prog-name">Electronics: I/O board</span><span class="prog-pct">55%</span></div>
-          <div class="prog-bar" role="progressbar" aria-label="Electronics: I/O board" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:55%"></span></div>
-          <p class="prog-note">Schematic in review, parts placed. The board outline waits on the mechanical design.</p>
-        </div>
-        <div class="prog" data-pct="40">
-          <div class="prog-top"><span class="prog-name">Cleaning software</span><span class="prog-pct">40%</span></div>
-          <div class="prog-bar" role="progressbar" aria-label="Cleaning software" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:40%"></span></div>
-          <p class="prog-note">Cleans along every wall and obstacle edge, and docks - in simulation. Whole-floor coverage is next.</p>
-        </div>
-        <div class="prog" data-pct="25">
-          <div class="prog-top"><span class="prog-name">Mechanical &amp; 3D design</span><span class="prog-pct">25%</span></div>
-          <div class="prog-bar" role="progressbar" aria-label="Mechanical and 3D design" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:25%"></span></div>
-          <p class="prog-note">Restarted around GT2 belts and metal-gearbox motors, for a simpler print. Parts digitized, chassis in progress.</p>
-        </div>
-        <div class="prog" data-pct="10">
-          <div class="prog-top"><span class="prog-name">MCU firmware</span><span class="prog-pct">10%</span></div>
-          <div class="prog-bar" role="progressbar" aria-label="MCU firmware" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:10%"></span></div>
-          <p class="prog-note">Serial protocol between compute and motor board merged and tested.</p>
-        </div>
-    </div>
-    <p class="prog-updated">Updated 28 Sep 2026 · <a href="https://github.com/makerspet/oomwoo/tree/main/contributions" style="color:var(--teal);text-decoration:none">task-by-task detail on the RFC board →</a></p>
   </section>
 
 
@@ -356,6 +312,51 @@
       </figure>
     </div>
     <p class="vids-more"><a href="https://www.youtube.com/@makerspet">More build videos on YouTube →</a></p>
+  </section>
+
+
+  <!-- PROGRESS -->
+  <section id="progress">
+    <div class="sec-head">
+      <h2>Where the build is</h2>
+      <p>Built in the open, so here is the honest state of it.</p>
+    </div>
+    <div class="status">
+      <span class="k">Can I build one?</span>
+      <span class="v"><strong style="color:var(--text)">Not yet - you can simulate it today.</strong>
+        The chassis and the I/O board are still being designed. Nothing is hidden while that
+        happens: parts, CAD, schematics and code are all public as they land, and the
+        step-by-step build guide follows once the first bill of materials is validated on real
+        hardware.</span>
+    </div>
+    <div class="prog-grid">
+        <div class="prog" data-pct="90">
+          <div class="prog-top"><span class="prog-name">Simulation</span><span class="prog-pct">90%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Simulation" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:90%"></span></div>
+          <p class="prog-note">Drive it in Gazebo today - SLAM, navigation, teleop. No hardware needed.</p>
+        </div>
+        <div class="prog" data-pct="55">
+          <div class="prog-top"><span class="prog-name">Electronics: I/O board</span><span class="prog-pct">55%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Electronics: I/O board" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:55%"></span></div>
+          <p class="prog-note">Schematic in review, parts placed. The board outline waits on the mechanical design.</p>
+        </div>
+        <div class="prog" data-pct="40">
+          <div class="prog-top"><span class="prog-name">Cleaning software</span><span class="prog-pct">40%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Cleaning software" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:40%"></span></div>
+          <p class="prog-note">Cleans along every wall and obstacle edge, and docks - in simulation. Whole-floor coverage is next.</p>
+        </div>
+        <div class="prog" data-pct="25">
+          <div class="prog-top"><span class="prog-name">Mechanical &amp; 3D design</span><span class="prog-pct">25%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="Mechanical and 3D design" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:25%"></span></div>
+          <p class="prog-note">Restarted around GT2 belts and metal-gearbox motors, for a simpler print. Parts digitized, chassis in progress.</p>
+        </div>
+        <div class="prog" data-pct="10">
+          <div class="prog-top"><span class="prog-name">MCU firmware</span><span class="prog-pct">10%</span></div>
+          <div class="prog-bar" role="progressbar" aria-label="MCU firmware" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="prog-fill" style="width:10%"></span></div>
+          <p class="prog-note">Serial protocol between compute and motor board merged and tested.</p>
+        </div>
+    </div>
+    <p class="prog-updated">Updated 28 Sep 2026 · <a href="https://github.com/makerspet/oomwoo/tree/main/contributions" style="color:var(--teal);text-decoration:none">task-by-task detail on the RFC board →</a></p>
   </section>
 
   <!-- BUILD / POINTERS -->
