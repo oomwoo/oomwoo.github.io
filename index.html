@@ -203,6 +203,22 @@
   .post p{margin:0;color:var(--muted);font-size:14px;flex:1}
   .post .go{margin-top:12px;font-size:14px;color:var(--teal);font-weight:600}
 
+  /* faq: native details/summary, works without JS */
+  .faq{max-width:760px;margin:0 auto;display:grid;gap:10px}
+  .faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    transition:border-color .2s}
+  .faq details[open],.faq details:hover{border-color:var(--teal)}
+  .faq summary{cursor:pointer;list-style:none;padding:16px 48px 16px 20px;position:relative;
+    font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);
+    color:var(--teal);font-size:22px;line-height:1;transition:transform .2s}
+  .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+  .faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;border-radius:12px}
+  .faq details p{margin:0;padding:0 20px 18px;color:var(--muted);font-size:15px}
+  .faq details a{color:var(--teal);text-decoration:none}
+  .faq details a:hover{text-decoration:underline}
+
   /* signup */
   .signup-box{background:linear-gradient(180deg,#141821,#10131a);border:1px solid var(--border);
     border-radius:22px;padding:44px 32px;text-align:center;position:relative;overflow:hidden}
@@ -238,6 +254,7 @@
       <a class="hide-sm" href="#build">Build</a>
       <a class="hide-sm" href="#progress">Progress</a>
       <a class="hide-sm" href="#contribute">Contribute</a>
+      <a class="hide-sm" href="#faq">FAQ</a>
       <a class="hide-sm" href="https://github.com/makerspet/oomwoo">GitHub</a>
       <a class="nav-cta" href="#newsletter">Get updates</a>
     </nav>
@@ -494,6 +511,44 @@
     </div>
   </section>
 
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="sec-head">
+      <h2>Questions</h2>
+      <p>The ones we get asked most.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Can I buy one?</summary>
+        <p>Not yet. You can run it in simulation today, but the chassis and electronics are still being designed - see <a href="#progress">where the build is</a>. Subscribe below to hear first when kits are available.</p>
+      </details>
+      <details>
+        <summary>Will there be a kit, or do I source everything myself?</summary>
+        <p>Either will work. A kit will be optional: the CAD, schematics, firmware, software and bill of materials all stay open, so you can buy the parts and print it yourself.</p>
+      </details>
+      <details>
+        <summary>Can I try it without any hardware?</summary>
+        <p>Yes. The dev environment runs in Docker - <a href="https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/">drive OOMWOO in Gazebo</a> with mapping and navigation, no robot needed. Or run the same software on an off-the-shelf <a href="https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/">Proscenic M6 Pro</a>.</p>
+      </details>
+      <details>
+        <summary>Does it need the cloud or an internet connection?</summary>
+        <p>No. It maps and cleans locally, and nothing leaves your home. Home Assistant integration is there if you want it.</p>
+      </details>
+      <details>
+        <summary>How can I help build it?</summary>
+        <p>Pick a task from the <a href="https://github.com/makerspet/oomwoo/tree/main/contributions">Requests for Contributions board</a>, read the <a href="https://github.com/makerspet/oomwoo/blob/main/docs/CONTRIBUTING.md">contributing guide</a> and say hi on <a href="https://discord.gg/3y2JKz5T25">Discord</a>. Code, CAD, electronics and testing are all welcome.</p>
+      </details>
+      <details>
+        <summary>Do you accept donations?</summary>
+        <p>Thank you for asking! Money is not an issue, so I'm not looking for donations. The best help is spreading the word - tell a friend who would want one, share OOMWOO online, or <a href="https://github.com/makerspet/oomwoo">star the repo</a>. You can also subscribe below to hear when kits are available, or pick up a task on the <a href="https://github.com/makerspet/oomwoo/tree/main/contributions">RFC board</a>.</p>
+      </details>
+      <details>
+        <summary>What is the license?</summary>
+        <p>Code is Apache-2.0. Hardware design files will use an open hardware license, still to be chosen.</p>
+      </details>
+    </div>
+  </section>
 
   <!-- NEWSLETTER -->
   <section id="newsletter">
