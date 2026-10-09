@@ -216,6 +216,9 @@
   .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
   .faq summary:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;border-radius:12px}
   .faq details p{margin:0;padding:0 20px 18px;color:var(--muted);font-size:15px}
+  .faq details p+ul{margin-top:-8px}
+  .faq details ul{margin:0;padding:0 20px 18px 40px;color:var(--muted);font-size:15px}
+  .faq details li{margin:3px 0}
   .faq details a{color:var(--teal);text-decoration:none}
   .faq details a:hover{text-decoration:underline}
 
@@ -530,6 +533,19 @@
       <details>
         <summary>Can I try it without any hardware?</summary>
         <p>Yes. The dev environment runs in Docker - <a href="https://makerspet.com/blog/simulate-oomwoo-one-robot-vacuum-in-gazebo-with-ros-2/">drive OOMWOO in Gazebo</a> with mapping and navigation, no robot needed. Or run the same software on an off-the-shelf <a href="https://makerspet.com/blog/tutorial-connect-robot-vacuum-cleaner-to-ros-2-proscenic-m6-pro/">Proscenic M6 Pro</a>.</p>
+      </details>
+      <details>
+        <summary>Can I use an old Android phone instead of a Raspberry Pi?</summary>
+        <p>That&#8217;s the plan: the phone becomes the robot&#8217;s touchscreen and its brain. The phone software doesn&#8217;t exist yet, so this spec is provisional:</p>
+        <ul>
+          <li>USB-C with USB OTG (host) support - the robot&#8217;s board connects to the phone over USB</li>
+          <li>64-bit Android - Ubuntu and ROS 2 need it</li>
+          <li>4 GB RAM minimum, 6 GB or more recommended. ROS 2 with mapping runs in 2 GB on a Raspberry Pi 4, and Android needs about 2 GB of its own</li>
+          <li>A CPU faster than a Raspberry Pi 4 - most phones from about 2018 on</li>
+          <li>About 8 GB of free storage</li>
+          <li>It has to fit the phone spot in the robot (size to be announced)</li>
+        </ul>
+        <p>Ubuntu with ROS 2 has already run on a Pixel 6 Pro. Newer Android versions restrict background apps, so expect a setup step or two. A Raspberry Pi CM4/CM5 stays the main option.</p>
       </details>
       <details>
         <summary>Does it need the cloud or an internet connection?</summary>
